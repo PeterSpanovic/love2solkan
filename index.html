@@ -1,370 +1,737 @@
 <!DOCTYPE html>
-
-<html class="scroll-smooth" lang="sl"><head>
+<html lang="sl" class="scroll-smooth">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Love 2 Solkan – Vaše zatočišče ob Soči</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@500;600&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "inverse-primary": "#ffb59b",
-                    "on-error-container": "#93000a",
-                    "surface-container-high": "#ebe8e2",
-                    "surface-bright": "#fdf9f3",
-                    "on-tertiary-fixed-variant": "#2c4c4c",
-                    "inverse-on-surface": "#f4f0ea",
-                    "surface": "#fdf9f3",
-                    "primary-container": "#c04000",
-                    "surface-container": "#f1ede7",
-                    "on-error": "#ffffff",
-                    "secondary-fixed": "#d9eaa3",
-                    "tertiary-fixed-dim": "#abcdcd",
-                    "on-primary-fixed": "#380d00",
-                    "tertiary-container": "#517171",
-                    "on-tertiary": "#ffffff",
-                    "error": "#ba1a1a",
-                    "outline": "#8d7167",
-                    "on-surface-variant": "#594139",
-                    "on-background": "#1c1c18",
-                    "surface-dim": "#dddad4",
-                    "error-container": "#ffdad6",
-                    "background": "#fdf9f3",
-                    "outline-variant": "#e1bfb4",
-                    "primary": "#973100",
-                    "on-primary-fixed-variant": "#812800",
-                    "on-primary-container": "#ffe9e3",
-                    "secondary-fixed-dim": "#bdce89",
-                    "secondary-container": "#d6e7a1",
-                    "surface-tint": "#a93700",
-                    "tertiary": "#395959",
-                    "on-secondary-container": "#5a682f",
-                    "on-secondary": "#ffffff",
-                    "on-primary": "#ffffff",
-                    "tertiary-fixed": "#c6e9e9",
-                    "inverse-surface": "#31302d",
-                    "on-surface": "#1c1c18",
-                    "on-secondary-fixed": "#161f00",
-                    "on-tertiary-container": "#d1f4f3",
-                    "primary-fixed-dim": "#ffb59b",
-                    "secondary": "#56642b",
-                    "surface-container-low": "#f7f3ed",
-                    "on-secondary-fixed-variant": "#3e4c16",
-                    "primary-fixed": "#ffdbcf",
-                    "surface-variant": "#e6e2dc",
-                    "surface-container-lowest": "#ffffff",
-                    "surface-container-highest": "#e6e2dc",
-                    "on-tertiary-fixed": "#002020"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
-            },
-            "fontFamily": {
-                    "headline": ["Noto Serif"],
-                    "body": ["Manrope"],
-                    "label": ["Manrope"]
-            }
-          },
-        },
-      }
-    </script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass-nav {
-            background-color: rgba(253, 249, 243, 0.8);
-            backdrop-filter: blur(12px);
-        }
-    </style>
-<script>
-function showLegal(id) {
-  const container = document.getElementById('legal-content');
-  const sections = container.querySelectorAll('section');
-  
-  // Hide all sections first
-  sections.forEach(s => s.classList.add('hidden'));
-  
-  // Show the specific section
-  const target = document.getElementById(id);
-  if (target) {
-    target.classList.remove('hidden');
-    container.classList.remove('hidden');
-    target.scrollIntoView({ behavior: 'smooth' });
+  :root {
+    --terracotta: #973100;
+    --terracotta-light: #c04000;
+    --cream: #fdf9f3;
+    --stone: #594139;
+    --sage: #56642b;
+    --teal: #395959;
+    --warm-gray: #8d7167;
   }
+
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: #1c1c18;
+    overflow-x: hidden;
+  }
+
+  .font-display { font-family: 'Cormorant Garamond', serif; }
+
+  /* NAV */
+  .glass-nav {
+    background: rgba(253,249,243,0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(141,113,103,0.08);
+  }
+
+  /* HERO */
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.15) 0%,
+      rgba(0,0,0,0.25) 50%,
+      rgba(0,0,0,0.55) 100%
+    );
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* AMENITY CARD */
+  .amenity-card {
+    background: #fff;
+    border: 1px solid rgba(141,113,103,0.12);
+    border-radius: 16px;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+  .amenity-card:hover {
+    box-shadow: 0 8px 28px rgba(151,49,0,0.09);
+    transform: translateY(-3px);
+  }
+
+  /* GALLERY GRID */
+  .gallery-item {
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .gallery-item:hover img { transform: scale(1.05); }
+
+  /* REVIEW CARD */
+  .review-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 36px;
+    backdrop-filter: blur(8px);
+  }
+
+  /* PRICING CARD */
+  .pricing-card {
+    background: #fff;
+    border: 1px solid rgba(141,113,103,0.15);
+    border-radius: 24px;
+    padding: 36px;
+    transition: box-shadow 0.25s, transform 0.25s;
+  }
+  .pricing-card:hover {
+    box-shadow: 0 12px 40px rgba(151,49,0,0.10);
+    transform: translateY(-4px);
+  }
+  .pricing-card.featured {
+    background: #973100;
+    color: #fff;
+    border-color: transparent;
+  }
+
+  /* FORM */
+  .form-input {
+    width: 100%;
+    background: #f7f3ed;
+    border: none;
+    border-bottom: 1.5px solid rgba(141,113,103,0.25);
+    border-radius: 0;
+    padding: 12px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: #1c1c18;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-input:focus { border-bottom-color: #973100; }
+  .form-input::placeholder { color: #8d7167; }
+
+  /* SUCCESS STATE */
+  #form-success { display: none; }
+
+  /* AVAILABILITY BAR */
+  .avail-bar {
+    background: #fff;
+    border: 1px solid rgba(141,113,103,0.15);
+    border-radius: 20px;
+    box-shadow: 0 8px 40px rgba(151,49,0,0.08);
+  }
+
+  /* SCROLL INDICATOR */
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+  .scroll-bounce { animation: bounce 1.8s ease-in-out infinite; }
+
+  /* MOBILE NAV */
+  #mobile-menu { display: none; }
+  #mobile-menu.open { display: flex; }
+
+  /* LIGHTBOX */
+  #lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 12px; }
+
+  /* STICKY CTA */
+  #sticky-cta {
+    transform: translateY(100%);
+    transition: transform 0.4s ease;
+  }
+  #sticky-cta.show { transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" onclick="closeLightbox()">
+  <button onclick="closeLightbox()" style="position:fixed;top:20px;right:24px;color:#fff;background:none;border:none;cursor:pointer;font-size:32px;line-height:1;z-index:10000">×</button>
+  <img id="lightbox-img" src="" alt=""/>
+</div>
+
+<!-- STICKY MOBILE CTA -->
+<div id="sticky-cta" class="fixed bottom-0 left-0 right-0 z-40 md:hidden px-4 pb-4 pt-2" style="background:linear-gradient(to top,rgba(253,249,243,1) 70%,transparent)">
+  <a href="https://hotelni.com/lovesolkan/" class="block w-full bg-[#973100] text-white text-center py-4 rounded-2xl font-medium text-sm tracking-wider uppercase">Rezerviraj zdaj</a>
+</div>
+
+<!-- NAV -->
+<nav class="glass-nav fixed top-0 w-full z-50">
+  <div class="flex justify-between items-center px-6 md:px-10 py-5 max-w-7xl mx-auto">
+    <a href="#hero" class="font-display text-[1.4rem] font-medium tracking-tight text-[#1c1c18]">Love 2 Solkan</a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#o-nas" class="text-[#1c1c18]/60 hover:text-[#973100] transition-colors text-xs tracking-[0.12em] uppercase font-medium">O nas</a>
+      <a href="#ponudba" class="text-[#1c1c18]/60 hover:text-[#973100] transition-colors text-xs tracking-[0.12em] uppercase font-medium">Ponudba</a>
+      <a href="#cene" class="text-[#1c1c18]/60 hover:text-[#973100] transition-colors text-xs tracking-[0.12em] uppercase font-medium">Cene</a>
+      <a href="#lokacija" class="text-[#1c1c18]/60 hover:text-[#973100] transition-colors text-xs tracking-[0.12em] uppercase font-medium">Lokacija</a>
+      <a href="#kontakt" class="text-[#1c1c18]/60 hover:text-[#973100] transition-colors text-xs tracking-[0.12em] uppercase font-medium">Kontakt</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="https://hotelni.com/lovesolkan/" class="hidden md:inline-block bg-[#973100] text-white px-6 py-3 rounded-xl text-sm font-medium hover:bg-[#c04000] transition-colors">Rezerviraj zdaj</a>
+      <button onclick="toggleMenu()" class="md:hidden p-2 text-[#1c1c18]" aria-label="Meni">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+  <!-- MOBILE MENU -->
+  <div id="mobile-menu" class="flex-col gap-0 px-6 pb-6 border-t border-[#8d7167]/10">
+    <a href="#o-nas" onclick="toggleMenu()" class="py-4 text-sm tracking-widest uppercase text-[#1c1c18]/70 border-b border-[#8d7167]/08 block">O nas</a>
+    <a href="#ponudba" onclick="toggleMenu()" class="py-4 text-sm tracking-widest uppercase text-[#1c1c18]/70 border-b border-[#8d7167]/08 block">Ponudba</a>
+    <a href="#cene" onclick="toggleMenu()" class="py-4 text-sm tracking-widest uppercase text-[#1c1c18]/70 border-b border-[#8d7167]/08 block">Cene</a>
+    <a href="#lokacija" onclick="toggleMenu()" class="py-4 text-sm tracking-widest uppercase text-[#1c1c18]/70 border-b border-[#8d7167]/08 block">Lokacija</a>
+    <a href="#kontakt" onclick="toggleMenu()" class="py-4 text-sm tracking-widest uppercase text-[#1c1c18]/70 block">Kontakt</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="relative h-screen min-h-[600px] flex flex-col justify-end overflow-hidden">
+  <div class="absolute inset-0 z-0">
+    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpSxrxb9ZoRHKAOcc5rznjZMLu9cSMjlOSjD4j52SnI9tN-1sO7rOTWEl336ZNCsF7j8aErwQb2rGrzCG4zeBcXB3wJLEnImCQYGXnU7_rNiH6DAjgAoW00jt5zG4Kfclm3vO85JvgahebjjaTd1o7K2ueiFufFpny2v83YxAsSVzCxrDtwboBFcVwQ8hIkIpXjeEkXH45dio4Zk7l22kMyqlGx3Xh5wrugkjteTUtP0NDTFtNVBCZ5PyKljJsO3puJOB2uK2pmrE" alt="Dolina Soče" loading="eager"/>
+    <div class="hero-overlay absolute inset-0"></div>
+  </div>
+
+  <!-- Hero content bottom-aligned -->
+  <div class="relative z-10 px-8 md:px-16 pb-20 md:pb-24 max-w-7xl mx-auto w-full">
+    <div class="max-w-2xl">
+      <p class="text-white/60 text-xs tracking-[0.25em] uppercase mb-5">Solkan, dolina Soče</p>
+      <h1 class="font-display text-5xl md:text-7xl text-white leading-[1.05] mb-6">Vaš dom<br/><em>ob smaragdni</em><br/>reki.</h1>
+      <p class="text-white/80 text-lg md:text-xl font-light mb-10 max-w-md leading-relaxed">Zasebna nastanitev z dušo, v objemu narave in zgodovine.</p>
+      <div class="flex flex-wrap gap-4">
+        <a href="https://hotelni.com/lovesolkan/" class="inline-block bg-[#973100] text-white px-8 py-4 rounded-xl text-sm font-medium tracking-wide hover:bg-[#c04000] transition-colors shadow-xl">Preveri razpoložljivost</a>
+        <a href="#o-nas" class="inline-block border border-white/30 text-white px-8 py-4 rounded-xl text-sm font-medium hover:bg-white/10 transition-colors backdrop-blur-sm">Spoznaj nas ↓</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 right-8 md:right-12 z-10 scroll-bounce">
+    <div class="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center">
+      <span class="material-symbols-outlined text-white text-base">keyboard_arrow_down</span>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK AVAILABILITY STRIP -->
+<div class="bg-[#f1ede7] border-b border-[#e1bfb4]/40 py-5 px-8">
+  <div class="max-w-7xl mx-auto flex flex-wrap gap-6 md:gap-10 items-center justify-between">
+    <div class="flex flex-wrap gap-6 md:gap-10 text-sm text-[#594139]">
+      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[#973100] text-base">calendar_month</span> Prijava: od 15:00</span>
+      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[#973100] text-base">logout</span> Odjava: do 10:00</span>
+      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[#973100] text-base">group</span> Do 8 gostov</span>
+      <span class="flex items-center gap-2"><span class="material-symbols-outlined text-[#973100] text-base">pets</span> Hišni ljubljenci dovoljeni</span>
+    </div>
+    <a href="https://hotelni.com/lovesolkan/" class="text-[#973100] text-xs font-medium tracking-widest uppercase hover:underline flex items-center gap-1">Knjiga termin <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+  </div>
+</div>
+
+<!-- O NAS -->
+<section id="o-nas" class="py-28 px-8">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+    <div class="reveal">
+      <span class="text-[#973100] text-xs tracking-[0.25em] uppercase font-medium block mb-5">Naša zgodba</span>
+      <h2 class="font-display text-5xl md:text-6xl leading-tight mb-8">Eleganca, mir<br/>in <em>domačnost</em></h2>
+      <div class="space-y-5 text-[#594139] leading-relaxed">
+        <p>V osrčju zgodovinskega Solkana, kjer se preteklost prepleta s sodobnim udobjem, stoji Love 2 Solkan. Smo družinska nastanitev z dušo – vsak kotiček je bil premišljeno zasnovan, da se počutite doma.</p>
+        <p>Posvečamo se gostom, ki iščejo pristno doživetje: jutranji mir ob skodelici kave na zasebni terasi, vonj reke Soče v ozračju, kolesarjenje po slikovitih poteh Vipavske doline.</p>
+      </div>
+      <div class="mt-10 flex gap-12">
+        <div>
+          <p class="font-display text-5xl text-[#973100]">4.9</p>
+          <p class="text-sm text-[#8d7167] mt-1">Povprečna ocena</p>
+        </div>
+        <div>
+          <p class="font-display text-5xl text-[#973100]">120+</p>
+          <p class="text-sm text-[#8d7167] mt-1">Zadovoljnih gostov</p>
+        </div>
+        <div>
+          <p class="font-display text-5xl text-[#973100]">3×</p>
+          <p class="text-sm text-[#8d7167] mt-1">Superhost nagrada</p>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2 relative">
+      <div class="aspect-[4/5] rounded-3xl overflow-hidden">
+        <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGpuiino9RN1eC-cP48pITrFsGOd8EQV_chT8H08ajcsxZIPw3BaE_X4sCq1IQf0ex4oiwLymuXqGR6bbz_1qUTnYVxCyG1fRBfEM_mq0aL_2vM0o0ihdjNtBHyIocQ1dGkcwkv-jYlog6PxCTBqCAe1DLPFwtuolx2x1ixXyCJmlcRsNXbbaszSY-cmjcK29-ZJj-2G_cRE0rjRWdb_MQbVaFjYM5kX-JhDOthrX2XmvhNhRpnqiDFjpGpZhGdAY-6uE7R9mcU68" alt="Kuhinja"/>
+      </div>
+      <!-- Floating badge -->
+      <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-xl px-6 py-4 border border-[#e1bfb4]/30">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#d6e7a1] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[#56642b] text-lg">eco</span>
+          </div>
+          <div>
+            <p class="text-xs text-[#8d7167]">Trajnostna nastanitev</p>
+            <p class="text-sm font-medium text-[#1c1c18]">Solkan, Slovenija</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="ponudba" class="py-12 px-8 bg-[#f7f3ed]">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-12 reveal">
+      <span class="text-[#973100] text-xs tracking-[0.25em] uppercase font-medium block mb-4">Prostor bivanja</span>
+      <h2 class="font-display text-4xl md:text-5xl">Udobje v vsakem kotičku</h2>
+    </div>
+    <!-- Bento grid – fixed radius -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-5 md:h-[680px]">
+      <div class="gallery-item md:col-span-7 h-72 md:h-full reveal" onclick="openLightbox(this)">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGpuiino9RN1eC-cP48pITrFsGOd8EQV_chT8H08ajcsxZIPw3BaE_X4sCq1IQf0ex4oiwLymuXqGR6bbz_1qUTnYVxCyG1fRBfEM_mq0aL_2vM0o0ihdjNtBHyIocQ1dGkcwkv-jYlog6PxCTBqCAe1DLPFwtuolx2x1ixXyCJmlcRsNXbbaszSY-cmjcK29-ZJj-2G_cRE0rjRWdb_MQbVaFjYM5kX-JhDOthrX2XmvhNhRpnqiDFjpGpZhGdAY-6uE7R9mcU68" alt="Kuhinja"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-8">
+          <div>
+            <h3 class="text-white font-display text-2xl mb-1">Popolnoma opremljena kuhinja</h3>
+            <p class="text-white/70 text-sm">Vse za pripravo lokalnih specialitet</p>
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-5 grid grid-rows-2 gap-5">
+        <div class="gallery-item h-48 md:h-full reveal reveal-delay-1" onclick="openLightbox(this)">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz0eUwxtKx-bOa_zAedX40Zgi0RavZQL_phjr0BWF-DRNKpS6VvAyhblNUh60x7HFDqyVzvyIkty5NJ2_c4Ej7fAK-IwhL6z4FMb03AB-hzlCKxRFlY9DxC_g3O1SC2LfWpXhGAqhMtjz0T0hGmZH3qnZIN5LQTQWo_2fij5BWdsn6nB9iqLaNKb5G_E9Ql8AYNjockvjs8AfTOLDba1b6A8z662wGIFVuDFvdZVH4tQISwS6kw-wDdG96c5PLyLE2zUQ0kKb__Fg" alt="Terasa"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
+            <h3 class="text-white font-display text-xl">Zasebna terasa</h3>
+          </div>
+        </div>
+        <div class="gallery-item h-48 md:h-full reveal reveal-delay-2" onclick="openLightbox(this)">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfMRpZWxU9EwEBoU7KaYgop7nh-B4rEVJbg8itUw2vbScwfB0C3Ivgt2OvYmacqa-PeJ6SLxV9CPhDKXbCqEThkoEVASa0oUT-lsoO-dKD7qzJBO5bj1elmD7sjayCc50T-oGeQhupCxXifVjikN-sS9WCt-nliNcTVEHkiT-FRIl0INchUQ7tPUp61t11uxq4sHsmg5etZJXXuVYLqKFT7nm2GGhSdOg8wZ-dFzD4QAnBcfjqT3rZ08t-1QcG572DNVDvI2BcwDM" alt="Soba"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
+            <h3 class="text-white font-display text-xl">Udobna spalnica</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="py-24 px-8 bg-[#f7f3ed]">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-12 reveal">
+      <span class="text-[#973100] text-xs tracking-[0.25em] uppercase font-medium block mb-4">Vse je vključeno</span>
+      <h2 class="font-display text-4xl md:text-5xl">Kar naredimo<br/><em>bivanje posebno</em></h2>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+      <div class="amenity-card reveal"><div class="w-12 h-12 rounded-2xl bg-[#d6e7a1] flex items-center justify-center"><span class="material-symbols-outlined text-[#56642b]">local_parking</span></div><span class="text-sm font-medium text-center text-[#1c1c18]">Brezplačno parkirišče</span></div>
+      <div class="amenity-card reveal reveal-delay-1"><div class="w-12 h-12 rounded-2xl bg-[#d6e7a1] flex items-center justify-center"><span class="material-symbols-outlined text-[#56642b]">ac_unit</span></div><span class="text-sm font-medium text-center text-[#1c1c18]">Klimatska naprava</span></div>
+      <div class="amenity-card reveal reveal-delay-2"><div class="w-12 h-12 rounded-2xl bg-[#d6e7a1] flex items-center justify-center"><span class="material-symbols-outlined text-[#56642b]">outdoor_grill</span></div><span class="text-sm font-medium text-center text-[#1c1c18]">Žar na terasi</span></div>
+      <div class="amenity-card reveal reveal-delay-3"><div class="w-12 h-12 rounded-2xl bg-[#d6e7a1] flex items-center justify-center"><span class="material-symbols-outlined text-[#56642b]">pool</span></div><span class="text-sm font-medium text-center text-[#1c1c18]">Bazen</span></div>
+      <div class="amenity-card reveal reveal-delay-4"><div class="w-12 h-12 rounded-2xl bg-[#d6e7a1] flex items-center justify-center"><span class="material-symbols-outlined text-[#56642b]">pets</span></div><span class="text-sm font-medium text-center text-[#1c1c18]">Hišnim ljubljenčkom prijazno</span></div>
+      <div class="amenity-card reveal"><div class="w-12 h-12 rounded-2xl bg-[#c6e9e9] flex items-center justify-center"><span class="material-symbols-outlined text-[#395959]">wifi</span></div><span class="text-sm font-medium text-center text-[#1c1c18]">Brezplačen Wi-Fi</span></div>
+      <div class="amenity-card reveal reveal-delay-1"><div class="w-12 h-12 rounded-2xl bg-[#c6e9e9] flex items-center justify-center"><span class="material-symbols-outlined text-[#395959]">local_laundry_service</span></div><span class="text-sm font-medium text-center text-[#1c1c18]">Pralnica</span></div>
+      <div class="amenity-card reveal reveal-delay-2"><div class="w-12 h-12 rounded-2xl bg-[#c6e9e9] flex items-center justify-center"><span class="material-symbols-outlined text-[#395959]">directions_bike</span></div><span class="text-sm font-medium text-center text-[#1c1c18]">Izposoja koles</span></div>
+      <div class="amenity-card reveal reveal-delay-3"><div class="w-12 h-12 rounded-2xl bg-[#c6e9e9] flex items-center justify-center"><span class="material-symbols-outlined text-[#395959]">baby_changing_station</span></div><span class="text-sm font-medium text-center text-[#1c1c18]">Primerno za otroke</span></div>
+      <div class="amenity-card reveal reveal-delay-4"><div class="w-12 h-12 rounded-2xl bg-[#c6e9e9] flex items-center justify-center"><span class="material-symbols-outlined text-[#395959]">fireplace</span></div><span class="text-sm font-medium text-center text-[#1c1c18]">Kamin</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="cene" class="py-28 px-8 bg-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <span class="text-[#973100] text-xs tracking-[0.25em] uppercase font-medium block mb-4">Transparentne cene</span>
+      <h2 class="font-display text-5xl md:text-6xl mb-4">Izberite<br/><em>vaš oddih</em></h2>
+      <p class="text-[#594139] text-lg max-w-lg mx-auto">Vse cene vključujejo DDV, posteljnino in končno čiščenje. Brez skritih stroškov.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Basic -->
+      <div class="pricing-card reveal">
+        <p class="text-xs tracking-[0.2em] uppercase text-[#8d7167] mb-6">Kratki oddih</p>
+        <div class="flex items-baseline gap-1 mb-2">
+          <span class="font-display text-5xl text-[#1c1c18]">€89</span>
+          <span class="text-[#8d7167] text-sm">/ noč</span>
+        </div>
+        <p class="text-sm text-[#8d7167] mb-8">Min. 2 noči • Do 4 gostov</p>
+        <ul class="space-y-3 text-sm text-[#594139] mb-10">
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[#56642b] text-base">check</span> Celotna nastanitev</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[#56642b] text-base">check</span> Brezplačen parking</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[#56642b] text-base">check</span> Wi-Fi</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[#56642b] text-base">check</span> Brezplačna odpoved 7 dni</li>
+        </ul>
+        <a href="https://hotelni.com/lovesolkan/" class="block w-full text-center border border-[#973100] text-[#973100] py-3 rounded-xl text-sm font-medium hover:bg-[#973100] hover:text-white transition-all">Rezerviraj</a>
+      </div>
+      <!-- Featured -->
+      <div class="pricing-card featured reveal reveal-delay-1" style="position:relative">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#56642b] text-white text-[10px] tracking-[0.2em] uppercase px-5 py-1.5 rounded-full">Najpopularnejše</div>
+        <p class="text-xs tracking-[0.2em] uppercase text-white/60 mb-6">Tedenski oddih</p>
+        <div class="flex items-baseline gap-1 mb-2">
+          <span class="font-display text-5xl text-white">€79</span>
+          <span class="text-white/60 text-sm">/ noč</span>
+        </div>
+        <p class="text-sm text-white/60 mb-8">Min. 7 noči • Do 6 gostov</p>
+        <ul class="space-y-3 text-sm text-white/80 mb-10">
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-white/60 text-base">check</span> Celotna nastanitev</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-white/60 text-base">check</span> Brezplačen parking</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-white/60 text-base">check</span> Wi-Fi + izposoja koles</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-white/60 text-base">check</span> Brezplačna odpoved 14 dni</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-white/60 text-base">check</span> Pozdravni koš z lokalnimi dobrotami</li>
+        </ul>
+        <a href="https://hotelni.com/lovesolkan/" class="block w-full text-center bg-white text-[#973100] py-3 rounded-xl text-sm font-medium hover:bg-[#f7f3ed] transition-all">Rezerviraj</a>
+      </div>
+      <!-- Extended -->
+      <div class="pricing-card reveal reveal-delay-2">
+        <p class="text-xs tracking-[0.2em] uppercase text-[#8d7167] mb-6">Daljši oddih</p>
+        <div class="flex items-baseline gap-1 mb-2">
+          <span class="font-display text-5xl text-[#1c1c18]">€69</span>
+          <span class="text-[#8d7167] text-sm">/ noč</span>
+        </div>
+        <p class="text-sm text-[#8d7167] mb-8">Min. 14 noči • Do 8 gostov</p>
+        <ul class="space-y-3 text-sm text-[#594139] mb-10">
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[#56642b] text-base">check</span> Celotna nastanitev</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[#56642b] text-base">check</span> Vse ugodnosti</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[#56642b] text-base">check</span> Tedensko čiščenje</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-[#56642b] text-base">check</span> Prilagodljivi pogoji</li>
+        </ul>
+        <a href="#kontakt" class="block w-full text-center border border-[#973100] text-[#973100] py-3 rounded-xl text-sm font-medium hover:bg-[#973100] hover:text-white transition-all">Povpraševanje</a>
+      </div>
+    </div>
+    <p class="text-center text-[#8d7167] text-xs mt-8 reveal">* Turistična taksa ni vključena (€1/osebo/noč). Cene so okvirne, dejanska cena se prikaže pri rezervaciji.</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="py-24 px-8 bg-[#395959] overflow-hidden">
+  <div class="max-w-7xl mx-auto">
+    <div class="flex items-end justify-between mb-16 reveal">
+      <h2 class="font-display text-4xl md:text-5xl text-white italic leading-tight">Besede,<br/>ki nas<br/>navdihujejo</h2>
+      <div class="hidden md:flex items-center gap-3">
+        <div class="flex gap-0.5">
+          <span class="material-symbols-outlined text-[#bdce89]" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89]" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89]" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89]" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89]" style='font-variation-settings:"FILL" 1'>star</span>
+        </div>
+        <span class="text-white/60 text-sm">4.9 / 5 — Booking.com</span>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="review-card reveal">
+        <div class="flex gap-0.5 mb-5">
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+        </div>
+        <p class="font-display text-xl italic text-white leading-relaxed mb-6">"Čudovita lokacija in izjemna gostoljubnost. Hiša nosi dušo – začutiš jo ob prvem koraku čez prag."</p>
+        <div class="flex items-center gap-3 mt-auto">
+          <div class="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-white text-xs font-medium">MA</div>
+          <div>
+            <p class="text-white text-sm font-medium">Marko & Ana</p>
+            <p class="text-white/40 text-xs">Ljubljana, maj 2025</p>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-delay-1">
+        <div class="flex gap-0.5 mb-5">
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+        </div>
+        <p class="font-display text-xl italic text-white leading-relaxed mb-6">"Perfekte Ausgangsbasis für Radtouren an der Soča. Sehr sauber, ruhig und modern eingerichtet."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-white text-xs font-medium">D</div>
+          <div>
+            <p class="text-white text-sm font-medium">David K.</p>
+            <p class="text-white/40 text-xs">Berlin, julij 2025</p>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal reveal-delay-2">
+        <div class="flex gap-0.5 mb-5">
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+          <span class="material-symbols-outlined text-[#bdce89] text-sm" style='font-variation-settings:"FILL" 1'>star</span>
+        </div>
+        <p class="font-display text-xl italic text-white leading-relaxed mb-6">"Colazione sul terrazzo privato: il momento più bello della vacanza. Torneremo sicuramente l'anno prossimo."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center text-white text-xs font-medium">E</div>
+          <div>
+            <p class="text-white text-sm font-medium">Elena R.</p>
+            <p class="text-white/40 text-xs">Milano, avgust 2025</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOKACIJA -->
+<section id="lokacija" class="py-28 px-8 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-16 reveal">
+      <span class="text-[#973100] text-xs tracking-[0.25em] uppercase font-medium block mb-4">Kje nas najdete</span>
+      <h2 class="font-display text-5xl md:text-6xl">Solkan:<br/><em>tam, kjer se Alpe<br/>srečajo z Mediteranom</em></h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      <div class="reveal">
+        <p class="text-[#594139] text-lg leading-relaxed mb-8">Pirjevčeva ulica 1, Solkan. Le 5 minut hoje od slavnega Solkanskega mosta in smaragdne reke Soče. Idealno izhodišče za aktivni oddih ali preprosto sproščanje v naravi.</p>
+        <!-- Nearby activities -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-[#f7f3ed] hover:bg-[#f1ede7] transition-colors">
+            <div class="w-10 h-10 rounded-xl bg-[#d6e7a1] flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[#56642b] text-base">directions_bike</span></div>
+            <div><p class="font-medium text-sm">Soška kolesarska pot</p><p class="text-[#8d7167] text-xs">2 min · z nastanitve</p></div>
+          </div>
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-[#f7f3ed] hover:bg-[#f1ede7] transition-colors">
+            <div class="w-10 h-10 rounded-xl bg-[#c6e9e9] flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[#395959] text-base">water</span></div>
+            <div><p class="font-medium text-sm">Reka Soča – kajak & rafting</p><p class="text-[#8d7167] text-xs">5 min · peš</p></div>
+          </div>
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-[#f7f3ed] hover:bg-[#f1ede7] transition-colors">
+            <div class="w-10 h-10 rounded-xl bg-[#ffdbcf] flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[#973100] text-base">location_city</span></div>
+            <div><p class="font-medium text-sm">Nova Gorica – center</p><p class="text-[#8d7167] text-xs">8 min · z avtomobilom</p></div>
+          </div>
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-[#f7f3ed] hover:bg-[#f1ede7] transition-colors">
+            <div class="w-10 h-10 rounded-xl bg-[#d6e7a1] flex items-center justify-center flex-shrink-0"><span class="material-symbols-outlined text-[#56642b] text-base">hiking</span></div>
+            <div><p class="font-medium text-sm">Planinska pot – Sveta Gora</p><p class="text-[#8d7167] text-xs">15 min · z avtomobilom</p></div>
+          </div>
+        </div>
+        <a href="https://maps.google.com/?q=Pirjev%C4%8Deva+ulica+1,+5250+Solkan" target="_blank" class="mt-8 inline-flex items-center gap-2 text-[#973100] text-sm font-medium hover:underline">
+          <span class="material-symbols-outlined text-base">location_on</span> Odpri v Google Maps
+        </a>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="aspect-square rounded-3xl overflow-hidden shadow-2xl">
+          <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWaZ8n9d-DefwSi3hE2OXJYXNRNQaHAOUBJ6YUk5GGxEqsHFaGcMLjOb11SWs_ODVDfMf-e1ApAdqig3841uda3EdeGp3CgiOtE-cRb8lnFbfS2XM82ibEBXpFua19ZNe42YJQ2ck47TFRmNimEYgFio6Fm0ZFbiSC5dnAsvDvUXpLdS3AgXV3qKtI2d1PWsDo_baQ2AV74TppN8rIGqR7IGc5j5SPcAc9u6F4n7Kz7-ErbwBGTfyhfAaTvVQBXNAQFG6XzGReZeE" alt="Karta Solkana"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt" class="py-28 px-8 bg-[#f7f3ed]">
+  <div class="max-w-5xl mx-auto">
+    <div class="bg-white rounded-3xl p-10 md:p-16 shadow-sm border border-[#e1bfb4]/20">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+        <div>
+          <span class="text-[#973100] text-xs tracking-[0.25em] uppercase font-medium block mb-5">Smo tu za vas</span>
+          <h2 class="font-display text-4xl md:text-5xl mb-8">Pišite<br/>nam</h2>
+          <div class="space-y-5">
+            <a href="tel:+38641123456" class="flex items-center gap-4 text-[#594139] hover:text-[#973100] transition-colors group">
+              <div class="w-11 h-11 rounded-2xl bg-[#ffdbcf] flex items-center justify-center group-hover:bg-[#973100] transition-colors">
+                <span class="material-symbols-outlined text-[#973100] text-base group-hover:text-white">phone</span>
+              </div>
+              <div>
+                <p class="text-xs text-[#8d7167] mb-0.5">Telefon</p>
+                <p class="font-medium">+386 41 123 456</p>
+              </div>
+            </a>
+            <a href="mailto:info@love2solkan.si" class="flex items-center gap-4 text-[#594139] hover:text-[#973100] transition-colors group">
+              <div class="w-11 h-11 rounded-2xl bg-[#ffdbcf] flex items-center justify-center group-hover:bg-[#973100] transition-colors">
+                <span class="material-symbols-outlined text-[#973100] text-base group-hover:text-white">mail</span>
+              </div>
+              <div>
+                <p class="text-xs text-[#8d7167] mb-0.5">E-pošta</p>
+                <p class="font-medium">info@love2solkan.si</p>
+              </div>
+            </a>
+            <div class="flex items-center gap-4 text-[#594139]">
+              <div class="w-11 h-11 rounded-2xl bg-[#ffdbcf] flex items-center justify-center">
+                <span class="material-symbols-outlined text-[#973100] text-base">apartment</span>
+              </div>
+              <div>
+                <p class="text-xs text-[#8d7167] mb-0.5">Naslov</p>
+                <p class="font-medium">Pirjevčeva ulica 1, 5250 Solkan</p>
+              </div>
+            </div>
+          </div>
+          <div class="mt-10 p-5 rounded-2xl bg-[#f1ede7] border border-[#e1bfb4]/30">
+            <p class="text-sm text-[#594139]"><strong class="font-medium">Odzivni čas:</strong> Odgovorimo v 2 urah med 8:00–20:00. Za hitrejši odgovor nas pokličite neposredno.</p>
+          </div>
+        </div>
+
+        <!-- FORM WITH SUCCESS STATE -->
+        <div>
+          <div id="contact-form">
+            <div class="space-y-8">
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-[#8d7167] mb-3">Ime in priimek</label>
+                <input id="f-name" class="form-input" placeholder="Vaše ime" type="text"/>
+              </div>
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-[#8d7167] mb-3">E-pošta</label>
+                <input id="f-email" class="form-input" placeholder="vas@email.com" type="email"/>
+              </div>
+              <div>
+                <label class="block text-xs uppercase tracking-widest text-[#8d7167] mb-3">Sporočilo</label>
+                <textarea id="f-msg" class="form-input resize-none" placeholder="Kako vam lahko pomagamo?" rows="4" style="background:#f7f3ed; border:none; border-bottom:1.5px solid rgba(141,113,103,0.25); padding:12px 0; font-family:'DM Sans',sans-serif; font-size:15px; width:100%; outline:none;"></textarea>
+              </div>
+              <button onclick="submitForm()" class="w-full bg-[#973100] text-white py-4 rounded-xl text-sm font-medium tracking-wider uppercase hover:bg-[#c04000] transition-colors shadow-lg">Pošlji sporočilo</button>
+            </div>
+          </div>
+          <div id="form-success" class="flex flex-col items-center justify-center text-center h-full py-12">
+            <div class="w-16 h-16 rounded-full bg-[#d6e7a1] flex items-center justify-center mb-5">
+              <span class="material-symbols-outlined text-[#56642b] text-3xl">check</span>
+            </div>
+            <h3 class="font-display text-3xl mb-3">Hvala!</h3>
+            <p class="text-[#594139]">Vaše sporočilo je bilo poslano. Odgovorili bomo v najkrajšem možnem času.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[#1c1c18] text-white/70">
+  <div class="max-w-7xl mx-auto px-10 pt-16 pb-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+      <div>
+        <a href="#hero" class="font-display text-2xl text-white block mb-4">Love 2 Solkan</a>
+        <p class="text-sm leading-relaxed">Vaše zatočišče v objemu narave.<br/>VIS Vojko Fon s.p.</p>
+      </div>
+      <div>
+        <p class="text-xs tracking-widest uppercase text-white/30 mb-5">Hitre povezave</p>
+        <div class="space-y-3 text-sm">
+          <a href="#o-nas" class="block hover:text-white transition-colors">O nas</a>
+          <a href="#ponudba" class="block hover:text-white transition-colors">Ponudba</a>
+          <a href="#cene" class="block hover:text-white transition-colors">Cene</a>
+          <a href="#kontakt" class="block hover:text-white transition-colors">Kontakt</a>
+          <a href="https://hotelni.com/lovesolkan/" class="block hover:text-white transition-colors">Rezerviraj zdaj ↗</a>
+        </div>
+      </div>
+      <div>
+        <p class="text-xs tracking-widest uppercase text-white/30 mb-5">Kontakt</p>
+        <div class="space-y-3 text-sm">
+          <p>Pirjevčeva ulica 1, 5250 Solkan</p>
+          <a href="tel:+38641123456" class="block hover:text-white transition-colors">+386 41 123 456</a>
+          <a href="mailto:info@love2solkan.si" class="block hover:text-white transition-colors">info@love2solkan.si</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-white/30">© 2026 Love 2 Solkan. Vse pravice pridržane.</p>
+      <div class="flex gap-6 text-xs">
+        <button onclick="showLegal('impresum')" class="hover:text-white transition-colors">Impresum</button>
+        <button onclick="showLegal('splosni-pogoji')" class="hover:text-white transition-colors">Splošni pogoji</button>
+        <button onclick="showLegal('politika-zasebnosti')" class="hover:text-white transition-colors">Zasebnost</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- LEGAL MODAL -->
+<div id="legal-modal" class="hidden fixed inset-0 z-50 flex items-end md:items-center justify-center px-4 pb-0" style="background:rgba(0,0,0,0.5)">
+  <div class="bg-white rounded-t-3xl md:rounded-3xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-10 relative">
+    <button onclick="hideLegal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-[#f1ede7] flex items-center justify-center">
+      <span class="material-symbols-outlined text-[#594139] text-base">close</span>
+    </button>
+    <section id="impresum" class="hidden">
+      <h2 class="font-display text-3xl mb-6">Impresum</h2>
+      <p class="text-[#594139] leading-relaxed">VIS Vojko Fon s.p.<br/>Pirjevčeva ulica 1, 5250 Solkan, Slovenija<br/><br/>Davčna številka: SI [po pridobitvi]<br/>Matična številka: [po pridobitvi]<br/><br/>Za kontakt: info@love2solkan.si</p>
+    </section>
+    <section id="splosni-pogoji" class="hidden">
+      <h2 class="font-display text-3xl mb-6">Splošni pogoji poslovanja</h2>
+      <p class="text-[#594139] leading-relaxed">Ti splošni pogoji urejajo pogoje nastanitve in rezervacije v Love 2 Solkan. Z rezervacijo se strinjate s temi pogoji. Za brezplačno odpoved glejte pogoje izbranega paketa. VIS Vojko Fon s.p. si pridržuje pravico do sprememb cen in pogojev.</p>
+    </section>
+    <section id="politika-zasebnosti" class="hidden">
+      <h2 class="font-display text-3xl mb-6">Politika zasebnosti</h2>
+      <p class="text-[#594139] leading-relaxed">Vaše osebne podatke varujemo v skladu z uredbo GDPR (EU) 2016/679. Podatke (ime, e-pošta, telefonska številka) zbiramo izključno za namen obdelave rezervacij in komunikacije z gosti. Podatkov ne posredujemo tretjim osebam brez vaše privolitve. Pravico imate do vpogleda, popravka ali izbrisa vaših podatkov na zahtevo.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+// SCROLL REVEAL
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+revealEls.forEach(el => observer.observe(el));
+
+// MOBILE MENU
+function toggleMenu() {
+  const m = document.getElementById('mobile-menu');
+  m.classList.toggle('open');
 }
 
-function hideLegal() {
-  document.getElementById('legal-content').classList.add('hidden');
+// LIGHTBOX
+function openLightbox(el) {
+  const img = el.querySelector('img');
+  document.getElementById('lightbox-img').src = img.src;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
-</script></head>
-<body class="bg-surface text-on-surface font-body">
-<!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-[#FDF9F3]/80 dark:bg-stone-950/80 backdrop-blur-md">
-<div class="flex justify-between items-center px-8 py-6 max-w-7xl mx-auto">
-<a class="text-2xl font-semibold tracking-tighter text-[#1C1C18] dark:text-[#FDF9F3] font-serif" href="#">Love 2 Solkan</a>
-<div class="hidden md:flex items-center gap-8">
-<a class="text-[#973100] border-b-2 border-[#973100] pb-1 font-label text-[0.75rem] tracking-[0.1em] uppercase" href="#hero">Domov</a>
-<a class="text-[#1C1C18] dark:text-[#FDF9F3]/70 hover:text-[#973100] transition-colors duration-300 font-label text-[0.75rem] tracking-[0.1em] uppercase" href="#o-nas">O nas</a>
-<a class="text-[#1C1C18] dark:text-[#FDF9F3]/70 hover:text-[#973100] transition-colors duration-300 font-label text-[0.75rem] tracking-[0.1em] uppercase" href="#ponudba">Ponudba</a>
-<a class="text-[#1C1C18] dark:text-[#FDF9F3]/70 hover:text-[#973100] transition-colors duration-300 font-label text-[0.75rem] tracking-[0.1em] uppercase" href="#lokacija">Lokacija</a>
-<a class="text-[#1C1C18] dark:text-[#FDF9F3]/70 hover:text-[#973100] transition-colors duration-300 font-label text-[0.75rem] tracking-[0.1em] uppercase" href="#kontakt">Kontakt</a>
-</div>
-<a class="bg-primary text-on-primary px-6 py-3 rounded-xl font-semibold text-sm hover:scale-95 transition-all duration-200" href="https://hotelni.com/lovesolkan/">Rezerviraj zdaj</a>
-</div>
-</nav>
-<!-- Hero Section -->
-<section class="relative h-screen flex items-center justify-center overflow-hidden" id="hero">
-<div class="absolute inset-0 z-0">
-<img class="w-full h-full object-cover" data-alt="Breathtaking aerial view of the Soča valley in Slovenia with turquoise river winding through lush green mountains and Solkan bridge in distance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpSxrxb9ZoRHKAOcc5rznjZMLu9cSMjlOSjD4j52SnI9tN-1sO7rOTWEl336ZNCsF7j8aErwQb2rGrzCG4zeBcXB3wJLEnImCQYGXnU7_rNiH6DAjgAoW00jt5zG4Kfclm3vO85JvgahebjjaTd1o7K2ueiFufFpny2v83YxAsSVzCxrDtwboBFcVwQ8hIkIpXjeEkXH45dio4Zk7l22kMyqlGx3Xh5wrugkjteTUtP0NDTFtNVBCZ5PyKljJsO3puJOB2uK2pmrE"/>
-<div class="absolute inset-0 bg-black/30"></div>
-</div>
-<div class="relative z-10 text-center px-4 max-w-4xl">
-<h1 class="font-headline text-5xl md:text-7xl text-white mb-6 leading-tight drop-shadow-sm">Vaš popoln oddih v objemu narave.</h1>
-<p class="font-body text-xl md:text-2xl text-white/90 mb-10 tracking-wide font-light">Odkrijte toplino družinske nastanitve v srcu Solkana.</p>
-<a class="inline-block bg-gradient-to-br from-primary to-primary-container text-on-primary px-10 py-5 rounded-xl text-lg font-semibold shadow-xl hover:scale-105 transition-transform" href="https://hotelni.com/lovesolkan/">
-                Preveri razpoložljivost
-            </a>
-</div>
-</section>
-<!-- O nastanitvi -->
-<section class="py-24 px-8 bg-surface" id="o-nas">
-<div class="max-w-4xl mx-auto text-center">
-<span class="text-primary font-label tracking-[0.2em] uppercase text-xs mb-4 block">Družinska tradicija</span>
-<h2 class="font-headline text-4xl md:text-5xl mb-12 text-on-surface">Eleganca, mir in domačnost</h2>
-<div class="space-y-6 text-on-surface-variant font-body text-lg leading-relaxed">
-<p>
-                    V osrčju zgodovinskega Solkana, kjer se preteklost prepleta s sodobnim udobjem, stoji Love 2 Solkan. Smo družinsko podjetje, ki s ponosom odpira vrata popotnikom, ki iščejo več kot le prenočišče.
-                </p>
-<p>
-                    Naša hiša nosi dušo, ki jo začutite ob prvem koraku čez prag. Vsak kotiček je bil premišljeno zasnovan, da vam nudi popoln mir in regeneracijo po raziskovanju okoliških lepot reke Soče in okoliškega hribovja.
-                </p>
-</div>
-</div>
-</section>
-<!-- Sobe/Apartmaji - Bento Style -->
-<section class="py-24 bg-surface-container-low px-8" id="ponudba">
-<div class="max-w-7xl mx-auto">
-<div class="mb-16">
-<h2 class="font-headline text-4xl text-on-surface mb-4">Udobje bivanja</h2>
-<p class="text-on-surface-variant font-body max-w-2xl">Vsaka podrobnost je izbrana z mislijo na vaše udobje, od naravnih materialov do sodobne tehnologije.</p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-12 gap-6 h-auto md:h-[800px]">
-<!-- Large Feature Card -->
-<div class="md:col-span-8 group relative overflow-hidden rounded-full bg-surface-container-lowest">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Modern high-end kitchen with wooden accents, stone countertops, and minimalist aesthetic bathed in natural morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGpuiino9RN1eC-cP48pITrFsGOd8EQV_chT8H08ajcsxZIPw3BaE_X4sCq1IQf0ex4oiwLymuXqGR6bbz_1qUTnYVxCyG1fRBfEM_mq0aL_2vM0o0ihdjNtBHyIocQ1dGkcwkv-jYlog6PxCTBqCAe1DLPFwtuolx2x1ixXyCJmlcRsNXbbaszSY-cmjcK29-ZJj-2G_cRE0rjRWdb_MQbVaFjYM5kX-JhDOthrX2XmvhNhRpnqiDFjpGpZhGdAY-6uE7R9mcU68"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-12">
-<h3 class="text-white font-headline text-3xl mb-2">Popolnoma opremljena kuhinja</h3>
-<p class="text-white/80 font-body">Vse, kar potrebujete za pripravo vrhunskih lokalnih obrokov.</p>
-</div>
-</div>
-<!-- Vertical Card -->
-<div class="md:col-span-4 flex flex-col gap-6">
-<div class="h-1/2 group relative overflow-hidden rounded-full bg-surface-container-lowest">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Luxury private terrace with terracotta tiles, comfortable lounge chairs, and views of the Mediterranean greenery at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz0eUwxtKx-bOa_zAedX40Zgi0RavZQL_phjr0BWF-DRNKpS6VvAyhblNUh60x7HFDqyVzvyIkty5NJ2_c4Ej7fAK-IwhL6z4FMb03AB-hzlCKxRFlY9DxC_g3O1SC2LfWpXhGAqhMtjz0T0hGmZH3qnZIN5LQTQWo_2fij5BWdsn6nB9iqLaNKb5G_E9Ql8AYNjockvjs8AfTOLDba1b6A8z662wGIFVuDFvdZVH4tQISwS6kw-wDdG96c5PLyLE2zUQ0kKb__Fg"/>
-<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-<span class="text-white font-headline text-xl">Zasebna terasa</span>
-</div>
-</div>
-<div class="h-1/2 group relative overflow-hidden rounded-full bg-surface-container-lowest">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Cozy bedroom with high-quality linen, soft warm lighting, and a view through a large window towards green mountains" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfMRpZWxU9EwEBoU7KaYgop7nh-B4rEVJbg8itUw2vbScwfB0C3Ivgt2OvYmacqa-PeJ6SLxV9CPhDKXbCqEThkoEVASa0oUT-lsoO-dKD7qzJBO5bj1elmD7sjayCc50T-oGeQhupCxXifVjikN-sS9WCt-nliNcTVEHkiT-FRIl0INchUQ7tPUp61t11uxq4sHsmg5etZJXXuVYLqKFT7nm2GGhSdOg8wZ-dFzD4QAnBcfjqT3rZ08t-1QcG572DNVDvI2BcwDM"/>
-<div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-<span class="text-white font-headline text-xl">Brezplačen Wi-Fi</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Udobje in Ponudba - Icon Grid -->
-<section class="py-24 px-8 bg-surface">
-<div class="max-w-7xl mx-auto">
-<div class="grid grid-cols-2 md:grid-cols-5 gap-12">
-<div class="flex flex-col items-center text-center">
-<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container mb-6">
-<span class="material-symbols-outlined text-3xl" data-icon="local_parking">local_parking</span>
-</div>
-<span class="font-label text-sm tracking-wide">Brezplačno parkirišče</span>
-</div>
-<div class="flex flex-col items-center text-center">
-<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container mb-6">
-<span class="material-symbols-outlined text-3xl" data-icon="ac_unit">ac_unit</span>
-</div>
-<span class="font-label text-sm tracking-wide">Klima</span>
-</div>
-<div class="flex flex-col items-center text-center">
-<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container mb-6">
-<span class="material-symbols-outlined text-3xl" data-icon="skillet">skillet</span>
-</div>
-<span class="font-label text-sm tracking-wide">Žar</span>
-</div>
-<div class="flex flex-col items-center text-center">
-<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container mb-6">
-<span class="material-symbols-outlined text-3xl" data-icon="pool">pool</span>
-</div>
-<span class="font-label text-sm tracking-wide">Bazen</span>
-</div>
-<div class="flex flex-col items-center text-center">
-<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container mb-6">
-<span class="material-symbols-outlined text-3xl" data-icon="pets">pets</span>
-</div>
-<span class="font-label text-sm tracking-wide">Hišnim ljubljenčkom prijazno</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Mnenja gostov -->
-<section class="py-24 bg-tertiary text-on-tertiary px-8 overflow-hidden">
-<div class="max-w-7xl mx-auto">
-<h2 class="font-headline text-4xl mb-16 text-center italic">Vaše besede so naša največja nagrada</h2>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-<div class="p-10 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
-<div class="flex gap-1 text-secondary-fixed mb-4">
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-</div>
-<p class="font-body text-lg italic mb-6">"Čudovita lokacija in izjemna gostoljubnost! Hiša je opremljena z neverjetnim občutkom za estetiko."</p>
-<span class="font-label text-xs uppercase tracking-widest text-on-tertiary/60">— Marko &amp; Ana, Ljubljana</span>
-</div>
-<div class="p-10 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
-<div class="flex gap-1 text-secondary-fixed mb-4">
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-</div>
-<p class="font-body text-lg italic mb-6">"Popolna izhodiščna točka za kolesarjenje ob Soči. Zelo čisto in mirno okolje."</p>
-<span class="font-label text-xs uppercase tracking-widest text-on-tertiary/60">— David, Berlin</span>
-</div>
-<div class="p-10 bg-white/5 backdrop-blur-md rounded-xl border border-white/10">
-<div class="flex gap-1 text-secondary-fixed mb-4">
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-<span class="material-symbols-outlined" data-icon="star" data-weight="fill" style='font-variation-settings: "FILL" 1;'>star</span>
-</div>
-<p class="font-body text-lg italic mb-6">"Zajtrk na zasebni terasi je bil vrhunec najinega dopusta. Zagotovo se vrneva."</p>
-<span class="font-label text-xs uppercase tracking-widest text-on-tertiary/60">— Elena, Milano</span>
-</div>
-</div>
-</div>
-</section>
-<!-- Lokacija -->
-<section class="py-24 px-8 bg-surface" id="lokacija">
-<div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-16 items-center">
-<div class="flex-1">
-<span class="text-primary font-label tracking-[0.2em] uppercase text-xs mb-4 block">Kje nas najdete</span>
-<h2 class="font-headline text-4xl mb-6">Solkan: Tam, kjer se srečata Alpe in Mediteran</h2>
-<p class="font-body text-on-surface-variant text-lg mb-8 leading-relaxed">
-                    Pirjevčeva ulica 1, Solkan. Le nekaj korakov stran od slavnega Solkanskega mosta in smaragdne reke Soče. Uživajte v pohodništvu, kolesarjenju ali preprostem sprehodu ob jezeru v bližini.
-                </p>
-<a class="flex items-center gap-4 text-primary font-semibold hover:underline" href="https://maps.google.com" target="_blank">
-<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
-<span>Odpri v Google Maps</span>
-</a>
-</div>
-<div class="flex-1 w-full aspect-video rounded-3xl overflow-hidden shadow-2xl">
-<div class="w-full h-full bg-surface-container-high flex items-center justify-center">
-<img class="w-full h-full object-cover" data-alt="Simplified artistic map of Solkan showing the river Soca, the bridge, and green residential areas in a minimalist style" data-location="Solkan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWaZ8n9d-DefwSi3hE2OXJYXNRNQaHAOUBJ6YUk5GGxEqsHFaGcMLjOb11SWs_ODVDfMf-e1ApAdqig3841uda3EdeGp3CgiOtE-cRb8lnFbfS2XM82ibEBXpFua19ZNe42YJQ2ck47TFRmNimEYgFio6Fm0ZFbiSC5dnAsvDvUXpLdS3AgXV3qKtI2d1PWsDo_baQ2AV74TppN8rIGqR7IGc5j5SPcAc9u6F4n7Kz7-ErbwBGTfyhfAaTvVQBXNAQFG6XzGReZeE"/>
-</div>
-</div>
-</div>
-</section>
-<!-- Kontakt in Rezervacija -->
-<section class="py-24 px-8 bg-surface-container-low" id="kontakt">
-<div class="max-w-5xl mx-auto">
-<div class="bg-surface-container-lowest rounded-3xl p-12 md:p-20 shadow-xl border border-outline-variant/10">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
-<div>
-<h2 class="font-headline text-4xl mb-8">Pišite nam</h2>
-<div class="space-y-6">
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary" data-icon="phone">phone</span>
-<span class="font-body text-lg">+386 (0)41 123 456</span>
-</div>
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
-<span class="font-body text-lg">info@love2solkan.si</span>
-</div>
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary" data-icon="apartment">apartment</span>
-<span class="font-body text-lg">Pirjevčeva ulica 1, 5250 Solkan</span>
-</div>
-</div>
-</div>
-<form class="space-y-6">
-<div>
-<label class="block font-label text-xs uppercase tracking-widest text-outline mb-2">Ime in priimek</label>
-<input class="w-full bg-surface-container-high border-0 border-b border-outline/20 focus:ring-0 focus:border-primary px-0 py-3 transition-all" placeholder="Vaše ime" type="text"/>
-</div>
-<div>
-<label class="block font-label text-xs uppercase tracking-widest text-outline mb-2">E-pošta</label>
-<input class="w-full bg-surface-container-high border-0 border-b border-outline/20 focus:ring-0 focus:border-primary px-0 py-3 transition-all" placeholder="vas@email.com" type="email"/>
-</div>
-<div>
-<label class="block font-label text-xs uppercase tracking-widest text-outline mb-2">Sporočilo</label>
-<textarea class="w-full bg-surface-container-high border-0 border-b border-outline/20 focus:ring-0 focus:border-primary px-0 py-3 transition-all" placeholder="Kako vam lahko pomagamo?" rows="4"></textarea>
-</div>
-<button class="w-full bg-primary text-on-primary py-4 rounded-xl font-semibold uppercase tracking-widest text-sm hover:bg-primary-container transition-colors shadow-lg" type="submit">Pošlji sporočilo</button>
-</form>
-</div>
-</div>
-</div>
-</section>
-<!-- Footer -->
-<footer class="bg-[#F7F3ED] dark:bg-stone-900 w-full rounded-t-3xl">
-<div class="flex flex-col md:flex-row justify-between items-start md:items-center px-12 py-16 gap-8 w-full">
-<div>
-<span class="text-lg font-serif text-[#1C1C18] dark:text-[#FDF9F3]">Love 2 Solkan</span>
-<p class="font-body text-on-surface-variant mt-2 max-w-sm">Vaše zatočišče v objemu narave. VIS Vojko Fon s.p.</p>
-</div>
-<div class="flex flex-wrap gap-x-8 gap-y-4">
-<a class="text-[#1C1C18]/60 dark:text-[#FDF9F3]/40 hover:text-[#973100] transition-all font-label text-sm tracking-wider" href="javascript:void(0)" onclick="showLegal('impresum')">Impresum</a>
-<a class="text-[#1C1C18]/60 dark:text-[#FDF9F3]/40 hover:text-[#973100] transition-all font-label text-sm tracking-wider" href="javascript:void(0)" onclick="showLegal('splosni-pogoji')">Splošni pogoji poslovanja</a>
-<a class="text-[#1C1C18]/60 dark:text-[#FDF9F3]/40 hover:text-[#973100] transition-all font-label text-sm tracking-wider" href="javascript:void(0)" onclick="showLegal('politika-zasebnosti')">Politika zasebnosti</a>
-</div>
-<div class="text-[#1C1C18]/60 dark:text-[#FDF9F3]/40 font-body text-sm">
-                © 2026 Love 2 Solkan. Vse pravice pridržane.
-            </div>
-</div>
-</footer>
-<!-- Simple Legal Sections (Hidden or as anchors) -->
-<div class="hidden" id="legal-content">
-<section class="py-12 px-8 bg-surface border-t border-outline-variant/20" id="impresum">
-<div class="max-w-4xl mx-auto"><button class="float-right text-primary hover:text-primary-container" onclick="hideLegal()">
-<span class="material-symbols-outlined">close</span>
-</button>
-<h2 class="font-headline text-3xl mb-6">Impresum</h2>
-<p class="font-body text-on-surface-variant">VIS Vojko Fon s.p.<br/>Pirjevčeva ulica 1, 5250 Solkan<br/>Davčna številka: SIXXXXXXXX<br/>Matična številka: XXXXXXXX</p>
-</div>
-</section>
-<section class="py-12 px-8 bg-surface border-t border-outline-variant/20" id="splosni-pogoji">
-<div class="max-w-4xl mx-auto"><button class="float-right text-primary hover:text-primary-container" onclick="hideLegal()">
-<span class="material-symbols-outlined">close</span>
-</button>
-<h2 class="font-headline text-3xl mb-6">Splošni pogoji poslovanja</h2>
-<p class="font-body text-on-surface-variant leading-relaxed">Splošni pogoji poslovanja za Love 2 Solkan. Ti pogoji določajo pravila uporabe naših storitev in postopke rezervacije. Z uporabo naše spletne strani se strinjate s temi pogoji.</p>
-</div>
-</section>
-<section class="py-12 px-8 bg-surface border-t border-outline-variant/20" id="politika-zasebnosti">
-<div class="max-w-4xl mx-auto"><button class="float-right text-primary hover:text-primary-container" onclick="hideLegal()">
-<span class="material-symbols-outlined">close</span>
-</button>
-<h2 class="font-headline text-3xl mb-6">Politika zasebnosti</h2>
-<p class="font-body text-on-surface-variant leading-relaxed">Vaše osebne podatke varujemo v skladu z uredbo GDPR. Podatke zbiramo izključno za namen obdelave vaših rezervacij in izboljšanje uporabniške izkušnje.</p>
-</div>
-</section>
-</div>
-</body></html>
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+// FORM SUBMIT
+function submitForm() {
+  const name = document.getElementById('f-name').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const msg = document.getElementById('f-msg').value.trim();
+  if (!name || !email || !msg) { alert('Prosimo, izpolnite vsa polja.'); return; }
+  document.getElementById('contact-form').style.display = 'none';
+  document.getElementById('form-success').style.display = 'flex';
+}
+
+// LEGAL MODAL
+function showLegal(id) {
+  const modal = document.getElementById('legal-modal');
+  modal.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+  const target = document.getElementById(id);
+  if (target) { target.classList.remove('hidden'); modal.classList.remove('hidden'); }
+}
+function hideLegal() {
+  document.getElementById('legal-modal').classList.add('hidden');
+}
+
+// STICKY MOBILE CTA – show after hero
+const heroBound = document.getElementById('hero');
+const stickyCta = document.getElementById('sticky-cta');
+const ctaObserver = new IntersectionObserver(entries => {
+  stickyCta.classList.toggle('show', !entries[0].isIntersecting);
+}, { threshold: 0 });
+ctaObserver.observe(heroBound);
+</script>
+</body>
+</html>
